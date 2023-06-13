@@ -38,10 +38,21 @@ public class Weather : IWeather
         }
     }
 
-    public Task PrintRandomCityAsync()
+  public async Task PrintRandomCityAsync()
+{
+    try
     {
-        throw new NotImplementedException();
+        var random = new Random();
+        var randomIndex = random.Next(0, Cities.Count());
+        var randomCity = Cities.ElementAt(randomIndex);
+        await PrintSingleCityAsync(randomCity);
     }
+    catch (Exception ex)
+    {
+        PrintException(ex);
+    }
+}
+
 
     public Task PrintSingleCityAsync(int id)
     {
